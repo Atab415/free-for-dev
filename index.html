@@ -7,21 +7,24 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: #121212;
+            background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
             color: white;
             text-align: center;
             margin: 0;
             padding: 0;
         }
 
-        .container, .order-container, .admin-container {
-            width: 80%;
+        .container {
+            width: 90%;
+            max-width: 1200px;
             margin: auto;
             padding: 20px;
         }
 
         h1 {
-            color: #00aaff;
+            color: #00eaff;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px #00eaff;
         }
 
         .pricing {
@@ -32,59 +35,54 @@
         }
 
         .box {
-            background: #1c1c1c;
+            background: rgba(0, 170, 255, 0.1);
             padding: 20px;
-            border-radius: 10px;
-            width: 250px;
-            box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+            border-radius: 15px;
+            width: 280px;
+            box-shadow: 0 0 20px rgba(0, 170, 255, 0.7);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .box:hover {
+            transform: scale(1.05);
         }
 
         button {
-            background: #00aaff;
-            color: white;
-            padding: 10px;
+            background: #00eaff;
+            color: black;
+            padding: 12px;
             border: none;
             cursor: pointer;
             width: 100%;
             margin-top: 10px;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
         }
 
-        input, select {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-            text-align: center;
+        button:hover {
+            background: #0088cc;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        p {
+            font-size: 1.2em;
+        }
+
+        .discord-link {
             margin-top: 20px;
-            background: #1c1c1c;
-            border-radius: 10px;
-            overflow: hidden;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #00eaff;
+            text-decoration: none;
+            transition: color 0.3s;
         }
 
-        table, th, td {
-            border: 1px solid #333;
-            padding: 10px;
-        }
-
-        th {
-            background: #00aaff;
-        }
-
-        .hidden {
-            display: none;
+        .discord-link:hover {
+            color: #0088cc;
         }
     </style>
 </head>
 <body>
-
-    <!-- 📌 الصفحة الرئيسية -->
     <div class="container">
         <h1>🎮 بيع اللاعبين الوهميين لـ FiveM</h1>
         <p>🔹 اجعل سيرفرك ممتلئ لجذب المزيد من اللاعبين الحقيقيين!</p>
@@ -95,7 +93,7 @@
                 <p>✅ يظهرون في `TAB`</p>
                 <p>✅ تسجيل دخول عشوائي</p>
                 <p>❌ غير دائم</p>
-                <button onclick="openOrder(25, 'يوم')">🔹 اطلب الآن</button>
+                <button onclick="redirectToDiscord()">🔹 اطلب الآن</button>
             </div>
             
             <div class="box">
@@ -103,7 +101,7 @@
                 <p>✅ يظهرون في `TAB`</p>
                 <p>✅ زيادة التفاعل</p>
                 <p>✅ الأفضل للمنافسة</p>
-                <button onclick="openOrder(100, 'أسبوع')">⚡ اطلب الآن</button>
+                <button onclick="redirectToDiscord()">⚡ اطلب الآن</button>
             </div>
             
             <div class="box">
@@ -111,94 +109,17 @@
                 <p>✅ يظهرون في `TAB`</p>
                 <p>✅ يدعم `Discord Webhook`</p>
                 <p>✅ التحكم الكامل</p>
-                <button onclick="openOrder(200, 'شهر')">🔥 اطلب الآن</button>
+                <button onclick="redirectToDiscord()">🔥 اطلب الآن</button>
             </div>
         </div>
-
-        <p>📩 تواصل معنا عبر الديسكورد: <b>discord.gg/fakeplayerspro</b></p>
-    </div>
-
-    <!-- 🛒 نافذة الطلب -->
-    <div class="order-container hidden" id="orderForm">
-        <h1>🛒 إتمام الطلب</h1>
-        <label>🔢 عدد اللاعبين</label>
-        <input type="number" id="playerCount" min="25" max="500" value="25">
         
-        <label>⏳ مدة التفعيل</label>
-        <select id="duration">
-            <option>يوم</option>
-            <option>أسبوع</option>
-            <option>شهر</option>
-        </select>
-
-        <label>🔗 رابط السيرفر</label>
-        <input type="text" id="serverLink" placeholder="cfx.re/join/XXXX">
-        
-        <button onclick="submitOrder()">✅ تأكيد الطلب</button>
-        <button onclick="closeOrder()">❌ إلغاء</button>
-    </div>
-
-    <!-- 🔧 لوحة التحكم -->
-    <div class="admin-container hidden" id="adminPanel">
-        <h1>🔧 لوحة تحكم الإدارة</h1>
-        <table>
-            <tr>
-                <th>🔢 العدد</th>
-                <th>⏳ المدة</th>
-                <th>🔗 السيرفر</th>
-                <th>✅ الحالة</th>
-            </tr>
-            <tbody id="ordersTable"></tbody>
-        </table>
-        <button onclick="closeAdmin()">❌ إغلاق</button>
+        <a href="https://discord.gg/vfwPMYFg5A" class="discord-link">📩 انضم إلى الديسكورد الآن</a>
     </div>
 
     <script>
-        function openOrder(players, duration) {
-            document.getElementById("orderForm").classList.remove("hidden");
-            document.getElementById("playerCount").value = players;
-            document.getElementById("duration").value = duration;
-        }
-
-        function closeOrder() {
-            document.getElementById("orderForm").classList.add("hidden");
-        }
-
-        function submitOrder() {
-            const players = document.getElementById("playerCount").value;
-            const duration = document.getElementById("duration").value;
-            const serverLink = document.getElementById("serverLink").value;
-
-            if (!serverLink.includes("cfx.re/join/")) {
-                alert("❌ يرجى إدخال رابط سيرفر صالح!");
-                return;
-            }
-
-            alert(`✅ تم إرسال طلبك: ${players} لاعب لمدة ${duration}`);
-            sendToDiscord(players, duration, serverLink);
-        }
-
-        function sendToDiscord(players, duration, serverLink) {
-            const webhookURL = "YOUR_DISCORD_WEBHOOK_HERE";
-            const message = {
-                content: `🟢 طلب جديد:\n🔹 **عدد اللاعبين:** ${players}\n⏳ **المدة:** ${duration}\n🔗 **رابط السيرفر:** ${serverLink}`
-            };
-
-            fetch(webhookURL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(message)
-            });
-        }
-
-        function openAdmin() {
-            document.getElementById("adminPanel").classList.remove("hidden");
-        }
-
-        function closeAdmin() {
-            document.getElementById("adminPanel").classList.add("hidden");
+        function redirectToDiscord() {
+            window.location.href = "https://discord.gg/vfwPMYFg5A";
         }
     </script>
-
 </body>
 </html>
