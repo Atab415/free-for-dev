@@ -4,122 +4,378 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بيع اللاعبين الوهميين | Fake Players</title>
+    <link rel="icon" type="image/png" href="image/image.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+            background: #0d0d0d;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* خلفية مع تعتيم */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('image/background.jpg') no-repeat center center/cover;
+            filter: brightness(40%);
+            z-index: -1;
+        }
+
+        .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 12px 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* الروابط في شريط التنقل */
+.navbar a {
+    color: #ffffff; /* لون النص الأساسي أبيض */
+    text-decoration: none;
+    font-size: 1.3em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease-in-out, transform 0.2s;
+}
+
+/* أيقونات داخل الشريط */
+.navbar a i {
+    font-size: 1.4em;
+}
+
+/* عند التمرير بالمؤشر */
+.navbar a:hover {
+    color: #FFD700; /* يتحول إلى اللون الذهبي */
+    transform: scale(1.1);
+}
+
+/* عند الضغط على الرابط */
+.navbar a:active {
+    color: #FFD700;
+    transform: scale(1.2);
+}
+
+        /* ستايل أيقونات الديسكورد واليوتيوب */
+        .social-icons {
+            position: fixed;
+            top: 75px;
+            left: 15px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            font-size: 2.5em;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        .discord-icon {
+            color: #5865F2 !important;
+        }
+
+        .youtube-icon {
+            color: #FF0000 !important;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0d0d0d;
             color: white;
             text-align: center;
             margin: 0;
             padding: 0;
         }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px;
+        /* الحاوية العامة */
+        .subscriptions-container {
+            text-align: center;
+            padding: 50px;
         }
 
-        h1 {
-            color: #00eaff;
+        /* العنوان الرئيسي */
+        .subscriptions-container h1 {
             font-size: 2.5em;
-            text-shadow: 0 0 10px #00eaff;
+            color: #fafafa;
+            text-shadow: 0 0 10px #ffffff;
         }
 
-        .pricing {
+        /* تصميم الباقات */
+        .pricing-plans {
             display: flex;
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
+            margin-top: 30px;
         }
 
-        .box {
-            background: rgba(0, 170, 255, 0.1);
+        .plan {
+            background: #151515;
             padding: 20px;
             border-radius: 15px;
-            width: 280px;
-            box-shadow: 0 0 20px rgba(0, 170, 255, 0.7);
+            width: 300px;
+            box-shadow: 0 0 20px rgba(200, 200, 200, 0.2);
+            text-align: center;
+            position: relative;
             transition: transform 0.3s ease-in-out;
+            border: 1px solid #282828;
         }
 
-        .box:hover {
+        .plan:hover {
             transform: scale(1.05);
         }
 
-        button {
-            background: #00eaff;
-            color: black;
+        /* وسم الأكثر مبيعًا */
+        .most-popular {
+            position: absolute;
+            top: -15px;
+            right: 10px;
+            background: #4a2ea5;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        /* تنسيق الباقة الأكثر مبيعًا */
+        .popular-plan {
+            border: 2px solid #7a5cff;
+            box-shadow: 0 0 25px rgba(122, 92, 255, 0.5);
+        }
+
+        /* السعر */
+        .price {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #facc15;
+            margin: 10px 0;
+        }
+
+        /* قائمة الميزات */
+        .features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .features li {
+            font-size: 1em;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .features i {
+            color: #7a5cff;
+            margin-left: 10px;
+        }
+
+        /* زر الاشتراك */
+        .subscribe-btn {
+            background: transparent;
+            border: 1px solid #7a5cff;
+            color: #7a5cff;
             padding: 12px;
-            border: none;
             cursor: pointer;
             width: 100%;
-            margin-top: 10px;
+            margin-top: 15px;
             border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: bold;
-        }
-
-        button:hover {
-            background: #0088cc;
-        }
-
-        p {
             font-size: 1.2em;
-        }
-
-        .discord-link {
-            margin-top: 20px;
-            font-size: 1.3em;
             font-weight: bold;
-            color: #00eaff;
-            text-decoration: none;
-            transition: color 0.3s;
+            transition: background 0.3s ease-in-out, color 0.3s;
         }
 
-        .discord-link:hover {
-            color: #0088cc;
+        .subscribe-btn:hover {
+            background: #7a5cff;
+            color: white;
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🎮 بيع اللاعبين الوهميين لـ FiveM</h1>
-        <p>🔹 اجعل سيرفرك ممتلئ لجذب المزيد من اللاعبين الحقيقيين!</p>
+    <!-- أيقونات التواصل -->
+    <div class="social-icons">
+        <a href="https://discord.gg/vfwPMYFg5A" target="_blank" class="discord-icon"><i class="fab fa-discord"></i></a>
+        <a href="https://www.youtube.com/@KimoOmar-q2k" target="_blank" class="youtube-icon"><i class="fab fa-youtube"></i></a>
+    </div>
+    <!-- شريط التنقل -->
+    <div class="navbar">
+        <a href="#instructions"><i class="fas fa-book"></i> تعليمات</a>
+        <a href="#rules"><i class="fas fa-gavel"></i> القوانين</a>
+        <a href="#benefits"><i class="fas fa-trophy"></i> مميزات اللاعب الوهمي</a>
+        <a href="#faq"><i class="fas fa-question-circle"></i> الأسئلة المتكررة</a>
+    </div>
 
-        <div class="pricing">
-            <div class="box">
-                <h2>25 لاعب / يوم</h2>
-                <p>✅ يظهرون في `TAB`</p>
-                <p>✅ تسجيل دخول عشوائي</p>
-                <p>❌ غير دائم</p>
-                <button onclick="redirectToDiscord()">🔹 اطلب الآن</button>
+
+
+
+    <div class="subscriptions-container">
+        <h1>اشتراكات أتأب بوت</h1>
+        <p>اختر الباقة التي تناسبك واستمتع بالمميزات الحصرية!</p>
+
+        <div class="pricing-plans">
+            <!-- الباقة الشهرية -->
+            <div class="plan">
+                <h2>الاشتراك الشهري</h2>
+                <p>اشتراك لمدة شهر كامل يشمل جميع المميزات.</p>
+
+                
+                <span class="price">29.99$ / شهر</span>
+                <ul class="features">
+                    <li><i class="fas fa-check check"></i> دخول اللاعب باسم بالشات العام</li>
+                    <li><i class="fas fa-check check"></i> دخول البوت بـ ID</li>
+                    <li><i class="fas fa-check check"></i> دخول اللاعب في TX Admin</li>
+                    <li><i class="fas fa-times times"></i> هل يبان البوت للاعبين في اللعبة</li>
+                    <li><i class="fas fa-times times"></i> هل يوجد ميزة تغيير الأسماء</li>
+                    <li><i class="fas fa-check check"></i> هل يبان في لوحة فايف إم من الخارج</li>
+                    <li><i class="fas fa-times times"></i> هل يوجد لوحة تحكم</li>
+                    <li><i class="fas fa-check check"></i> سرعة بدخول السيرفر</li>
+                    <li><i class="fas fa-check check"></i> هل يزيد العدد بالهود</li>
+                    <li><i class="fas fa-check check"></i> هل يبان معلوماته في TX Admin</li>
+                    <li><i class="fas fa-check check"></i> حماية متطورة</li>
+                    <li><i class="fas fa-check check"></i> إضافات زيادة</li>
+                    <li><i class="fas fa-check check"></i> متاح لوح كامل</li>
+                    <li><i class="fas fa-check check"></i> دعم فني</li>
+                    <li><i class="fas fa-check check"></i>التحكم فقط للAdmin</li>
+                    <p><i class="fas fa-robot"></i> الحد الأدنى للاشتراك: 35 بوت</p>
+                </ul>
+                <button class="subscribe-btn" onclick="joinDiscord()">الحصول على اشتراك شهري</button>
             </div>
-            
-            <div class="box">
-                <h2>100 لاعب / أسبوع</h2>
-                <p>✅ يظهرون في `TAB`</p>
-                <p>✅ زيادة التفاعل</p>
-                <p>✅ الأفضل للمنافسة</p>
-                <button onclick="redirectToDiscord()">⚡ اطلب الآن</button>
+
+            <!-- الباقة الربع سنوية (الأكثر مبيعًا) -->
+            <div class="plan popular-plan">
+                <div class="most-popular">الأكثر مبيعًا</div>
+                <h2>الاشتراك الربع سنوي</h2>
+                <p>اشتراك لمدة 3 أشهر يشمل جميع المميزات.</p>
+                <span class="price">69.99$ / 3 أشهر</span>
+                <ul class="features">
+                    <li><i class="fas fa-check check"></i> دخول اللاعب باسم بالشات العام</li>
+                    <li><i class="fas fa-check check"></i> دخول البوت بـ ID</li>
+                    <li><i class="fas fa-check check"></i> دخول اللاعب في TX Admin</li>
+                    <li><i class="fas fa-times times"></i> هل يبان البوت للاعبين في اللعبة</li>
+                    <li><i class="fas fa-times times"></i> هل يوجد ميزة تغيير الأسماء</li>
+                    <li><i class="fas fa-check check"></i> هل يبان في لوحة فايف إم من الخارج</li>
+                    <li><i class="fas fa-times times"></i> هل يوجد لوحة تحكم</li>
+                    <li><i class="fas fa-check check"></i> سرعة بدخول السيرفر</li>
+                    <li><i class="fas fa-check check"></i> هل يزيد العدد بالهود</li>
+                    <li><i class="fas fa-check check"></i> هل يبان معلوماته في TX Admin</li>
+                    <li><i class="fas fa-check check"></i> حماية متطورة</li>
+                    <li><i class="fas fa-check check"></i> إضافات زيادة</li>
+                    <li><i class="fas fa-check check"></i> متاح لوح كامل</li>
+                    <li><i class="fas fa-check check"></i> دعم فني</li>
+                    <li><i class="fas fa-check check"></i>التحكم فقط للAdmin</li>
+                    <p><i class="fas fa-robot"></i> الحد الأدنى للاشتراك: 35 بوت</p>
+                </ul>
+                <button class="subscribe-btn" onclick="joinDiscord()">الحصول على اشتراك 3 أشهر</button>
             </div>
-            
-            <div class="box">
-                <h2>200 لاعب / شهر</h2>
-                <p>✅ يظهرون في `TAB`</p>
-                <p>✅ يدعم `Discord Webhook`</p>
-                <p>✅ التحكم الكامل</p>
-                <button onclick="redirectToDiscord()">🔥 اطلب الآن</button>
+
+            <!-- الباقة السنوية -->
+            <div class="plan">
+                <h2>الاشتراك السنوي</h2>
+                <p>اشتراك لمدة سنة كاملة يشمل جميع المميزات.</p>
+                <span class="price">214.99$ / سنوي</span>
+                <ul class="features">
+                    <li><i class="fas fa-check check"></i> دخول اللاعب باسم بالشات العام</li>
+                    <li><i class="fas fa-check check"></i> دخول البوت بـ ID</li>
+                    <li><i class="fas fa-check check"></i> دخول اللاعب في TX Admin</li>
+                    <li><i class="fas fa-times times"></i> هل يبان البوت للاعبين في اللعبة</li>
+                    <li><i class="fas fa-times times"></i> هل يوجد ميزة تغيير الأسماء</li>
+                    <li><i class="fas fa-check check"></i> هل يبان في لوحة فايف إم من الخارج</li>
+                    <li><i class="fas fa-times times"></i> هل يوجد لوحة تحكم</li>
+                    <li><i class="fas fa-check check"></i> سرعة بدخول السيرفر</li>
+                    <li><i class="fas fa-check check"></i> هل يزيد العدد بالهود</li>
+                    <li><i class="fas fa-check check"></i> هل يبان معلوماته في TX Admin</li>
+                    <li><i class="fas fa-check check"></i> حماية متطورة</li>
+                    <li><i class="fas fa-check check"></i> إضافات زيادة</li>
+                    <li><i class="fas fa-check check"></i> متاح لوح كامل</li>
+                    <li><i class="fas fa-check check"></i> دعم فني</li>
+                    <li><i class="fas fa-check check"></i>التحكم فقط للAdmin</li>
+                    <p><i class="fas fa-robot"></i> الحد الأدنى للاشتراك: 35 بوت</p>
+                </ul>
+                <button class="subscribe-btn" onclick="joinDiscord()">الحصول على اشتراك سنوي</button>
             </div>
         </div>
-        
-        <a href="https://discord.gg/vfwPMYFg5A" class="discord-link">📩 انضم إلى الديسكورد الآن</a>
+    </div>
+            
+            
+
+        </div>
+    </div>
+
+    <!-- الأقسام الإضافية -->
+    <div class="container">
+        <div class="section instructions-section" id="instructions">
+            <h2><i class="fas fa-book"></i> كيفية تشغيل اللاعبين الوهميين</h2>
+            <p>1️⃣ قم باختيار الباقة المناسبة لك وطلبها عبر ديسكورد. <br>
+               2️⃣ سنوفر لك المعلومات والإعدادات المطلوبة لإضافتهم إلى سيرفرك. <br>
+               3️⃣  يتم تفعيل اللاعبين الوهميين تلقائيًا داخل سيرفرك ليظهروا ضمن قائمة اللاعبين. حتا لو ما تفهم بلبرمجة رح تعرف تشغل وتضيف وتمسح بوتات</p>
+        </div>
+
+        <div class="section rules-section" id="rules">
+            <h2><i class="fas fa-gavel"></i> القوانين والإرشادات</h2>
+            <p>⚠️ لا يجوز استخدام اللاعبين الوهميين لأغراض غير قانونية أو مسيئة.<br>
+               ⚠️ لا يمكن مشاركة بيانات الدخول الخاصة بالخدمة مع أي شخص آخر.<br>
+               ⚠️ أي إساءة استخدام قد تؤدي إلى إيقاف الخدمة نهائيًا دون تعويض.</p>
+        </div>
+
+        <div class="section benefits-section" id="benefits">
+            <h2><i class="fas fa-trophy"></i> مميزات اللاعبين الوهميين</h2>
+            <p>🚀 زيادة عدد اللاعبين في السيرفر مما يجذب المزيد من اللاعبين الحقيقيين!<br>
+               🔥 يظهرون على قائمة اللاعبين وداخل TX Admin لزيادة الواقعية.<br>
+               🔒 نظام آمن يعمل دون التأثير على أداء السيرفر أو اكتشافه من قبل فايف إم.</p>
+        </div>
+
+        <div class="section faq-section" id="faq">
+            <h2><i class="fas fa-question-circle"></i> الأسئلة الشائعة</h2>
+            <p><strong>❓ هل يتطلب الأمر منحي أي رول في ديسكورد؟</strong><br>  
+                ✅ لا، لن تحتاج إلى اعطاك رول في ديسكورد. نحن نحرص على سرية الخدمة بالكامل، حتى لا يلاحظ أحد أنك تستخدم البوتات، مما يحافظ على مصداقية سيرفرك. 😉</p>
+    
+            <p><strong>❓ هل يحتاج البوت لصلاحيات خاصة؟</strong><br>
+               ✅ البوت لا يحتاج اي صلاحية لدخول السيرفر.</p>
+
+            <p><strong>❓ هل يمكن أن يتم تهكيري باستخدام اللاعبين الوهميين؟</strong><br>
+               🔒 لا، الخدمة تعمل عبر استضافة آمنة تمامًا، ولا تحتوي على أي ثغرات تهدد بياناتك.</p>
+
+            <p><strong>❓ ما هي تكلفة الاشتراك؟</strong><br>
+               💰 لدينا ثلاث باقات مختلفة بحسب المدة، وكلها تتضمن نفس الميزات.</p>
+
+            <p><strong>❓ هل يوجد صور أو فيديوهات لشرح النظام؟</strong><br>
+               📷 نعم! يمكنك فتح تذكرة استفسار عبر ديسكورد للحصول على صور وتجربة حقيقية.</p>
+        </div>
     </div>
 
     <script>
-        function redirectToDiscord() {
-            window.location.href = "https://discord.gg/vfwPMYFg5A";
+        function joinDiscord() {
+            window.open("https://discord.gg/vfwPMYFg5A", "_blank");
         }
+        
     </script>
+
+    
+    
+    
+    
 </body>
 </html>
