@@ -7,211 +7,260 @@
     <link rel="icon" type="image/png" href="image/image.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: #0d0d0d;
-            color: white;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            position: relative;
-            overflow-x: hidden;
-        }
+        /* 🌙 Base Styles */
+body {
+    font-family: 'Poppins', 'Arial', sans-serif;
+    background-color: #0b0b0b;
+    color: #f5f5f5;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
 
-        /* خلفية مع تعتيم */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('image/background.jpg') no-repeat center center/cover;
-            filter: brightness(40%);
-            z-index: -1;
-        }
-
-        .navbar {
+/* Background overlay */
+body::before {
+    content: "";
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    padding: 12px 0;
+    height: 100%;
+    background: url('image/background.jpg') no-repeat center center/cover;
+    filter: brightness(35%) blur(2px);
+    z-index: -1;
+}
+
+/* ✨ Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(15, 15, 15, 0.95);
+    padding: 14px 0;
     z-index: 1000;
     display: flex;
     justify-content: center;
-    gap: 35px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    gap: 40px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* الروابط في شريط التنقل */
 .navbar a {
-    color: #ffffff; /* لون النص الأساسي أبيض */
+    color: #ffffff;
     text-decoration: none;
-    font-size: 1.3em;
-    font-weight: bold;
+    font-size: 1.2em;
+    font-weight: 600;
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: color 0.3s ease-in-out, transform 0.2s;
+    transition: all 0.3s ease-in-out;
 }
 
-/* أيقونات داخل الشريط */
 .navbar a i {
-    font-size: 1.4em;
+    font-size: 1.3em;
 }
 
-/* عند التمرير بالمؤشر */
 .navbar a:hover {
-    color: #FFD700; /* يتحول إلى اللون الذهبي */
-    transform: scale(1.1);
-}
-
-/* عند الضغط على الرابط */
-.navbar a:active {
     color: #FFD700;
-    transform: scale(1.2);
+    transform: translateY(-2px);
 }
 
-        /* ستايل أيقونات الديسكورد واليوتيوب */
-        .social-icons {
-            position: fixed;
-            top: 75px;
-            left: 15px;
-            display: flex;
-            gap: 15px;
-        }
+/* 📱 Social Icons */
+.social-icons {
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 900;
+}
 
-        .social-icons a {
-            font-size: 2.5em;
-            transition: transform 0.2s ease-in-out;
-        }
+.social-icons a {
+    font-size: 2.2em;
+    transition: transform 0.3s ease-in-out;
+}
 
-        .social-icons a:hover {
-            transform: scale(1.2);
-        }
+.social-icons a:hover {
+    transform: scale(1.25) rotate(8deg);
+}
 
-        .discord-icon {
-            color: #5865F2 !important;
-        }
+.discord-icon {
+    color: #5865F2;
+}
 
-        .youtube-icon {
-            color: #FF0000 !important;
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-            background: #0d0d0d;
-            color: white;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
+.youtube-icon {
+    color: #FF0000;
+}
 
-        /* الحاوية العامة */
-        .subscriptions-container {
-            text-align: center;
-            padding: 50px;
-        }
+/* 💎 Subscription Section */
+.subscriptions-container {
+    padding: 120px 40px 60px;
+}
 
-        /* العنوان الرئيسي */
-        .subscriptions-container h1 {
-            font-size: 2.5em;
-            color: #fafafa;
-            text-shadow: 0 0 10px #ffffff;
-        }
+.subscriptions-container h1 {
+    font-size: 2.8em;
+    color: #fff;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+    margin-bottom: 15px;
+}
 
-        /* تصميم الباقات */
-        .pricing-plans {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
+.subscriptions-container p {
+    font-size: 1.2em;
+    color: #ccc;
+}
 
-        .plan {
-            background: #151515;
-            padding: 20px;
-            border-radius: 15px;
-            width: 300px;
-            box-shadow: 0 0 20px rgba(200, 200, 200, 0.2);
-            text-align: center;
-            position: relative;
-            transition: transform 0.3s ease-in-out;
-            border: 1px solid #282828;
-        }
+/* 🧱 Pricing Plans Layout */
+.pricing-plans {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
 
-        .plan:hover {
-            transform: scale(1.05);
-        }
+/* 💼 Individual Plan Cards */
+.plan {
+    background: linear-gradient(145deg, #111 0%, #1c1c1c 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    padding: 25px;
+    width: 310px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+}
 
-        /* وسم الأكثر مبيعًا */
-        .most-popular {
-            position: absolute;
-            top: -15px;
-            right: 10px;
-            background: #4a2ea5;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.9em;
-        }
+.plan:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 35px rgba(122, 92, 255, 0.4);
+}
 
-        /* تنسيق الباقة الأكثر مبيعًا */
-        .popular-plan {
-            border: 2px solid #7a5cff;
-            box-shadow: 0 0 25px rgba(122, 92, 255, 0.5);
-        }
+.popular-plan {
+    border: 2px solid #7a5cff;
+    box-shadow: 0 0 40px rgba(122, 92, 255, 0.6);
+}
 
-        /* السعر */
-        .price {
-            font-size: 1.7em;
-            font-weight: bold;
-            color: #facc15;
-            margin: 10px 0;
-        }
+/* 🏷️ Badge */
+.most-popular {
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    background: linear-gradient(90deg, #7a5cff, #9b8bff);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    font-weight: bold;
+}
 
-        /* قائمة الميزات */
-        .features {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
-        }
+/* 💰 Price */
+.price {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #FFD700;
+    margin: 12px 0;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
 
-        .features li {
-            font-size: 1em;
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+/* ✅ Features */
+.features {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 25px;
+}
 
-        .features i {
-            color: #7a5cff;
-            margin-left: 10px;
-        }
+.features li {
+    font-size: 1em;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ddd;
+}
 
-        /* زر الاشتراك */
-        .subscribe-btn {
-            background: transparent;
-            border: 1px solid #7a5cff;
-            color: #7a5cff;
-            padding: 12px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 15px;
-            border-radius: 8px;
-            font-size: 1.2em;
-            font-weight: bold;
-            transition: background 0.3s ease-in-out, color 0.3s;
-        }
+.features i {
+    color: #7a5cff;
+    margin-left: 10px;
+}
 
-        .subscribe-btn:hover {
-            background: #7a5cff;
-            color: white;
-            transform: scale(1.05);
-        }
+/* 🎯 Button */
+.subscribe-btn {
+    background: transparent;
+    border: 1.5px solid #7a5cff;
+    color: #7a5cff;
+    padding: 12px 0;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.subscribe-btn:hover {
+    background: #7a5cff;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* 📘 Additional Sections */
+.container {
+    padding: 60px 40px;
+    background: rgba(0, 0, 0, 0.6);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    text-align: center;
+    line-height: 1.7;
+}
+
+.section h2 {
+    font-size: 2em;
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.section p {
+    font-size: 1.1em;
+    color: #ccc;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .navbar a {
+        font-size: 1em;
+    }
+
+    .social-icons {
+        top: 70px;
+        left: 10px;
+        flex-direction: row;
+    }
+
+    .pricing-plans {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .plan {
+        width: 90%;
+    }
+}
+
     </style>
 </head>
 <body>
